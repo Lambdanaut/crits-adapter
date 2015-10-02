@@ -26,11 +26,6 @@ Constraints
   the CRITs API is limited to file name and MD5 hash. There is an [open
   GitHub issue][0] for this.
 
-* CRITs releasability flag: while the CRITs API (get) allows filtering
-  data retrieval based on a releasability flag, for inserting (post)
-  data the CRITs API currently does not support setting a
-  releasability flag.There is an [open GitHub issue][1] for this.
-
 * STIX indicator objects: by last count there are at least
   [12 different ways][2] to express context between 2 IP addresses.
   This adapter currently only supports STIX indicators containing
