@@ -70,9 +70,6 @@ def crits_poll(config, src, endpoint, id_=None):
     to_verify = attempt_certificate_validation and config['crits']['sites'][src]['api']['ssl']
     data = {'api_key': config['crits']['sites'][src]['api']['key'],
             'username': config['crits']['sites'][src]['api']['user']}
-    if config['crits']['sites'][src]['api']['use_releasability']:
-        data.update({'c-releasability.name':
-                     config['crits']['sites'][src]['api']['source']})
     r = requests.get(url + endpoint + '/' + id_ + '/',
                      params=data,
                      verify=to_verify)
@@ -440,15 +437,10 @@ def fetch_crits_object_ids(config, src, endpoint, timestamp=None):
     #           'username': config['crits']['sites'][src]['api']['user'],
     #           'limit': 1,  # just grabbing meta for total object count...
     #           'c-modified__gt': crits_timestamp,
-    #           'c-releasability.name':
-    #           config['crits']['sites'][src]['api']['source'],
     #           'offset': 0}
     # object_ids.update(__fetch_crits_object_ids(config, src,
     #                                            endpoint, params))
     # first, check for newly created records...
-    if config['crits']['sites'][src]['api']['use_releasability']:
-        params.update({'c-releasability.name':
-                       config['crits']['sites'][src]['api']['source']})
     object_ids.extend(__fetch_crits_object_ids(config, src,
                                                endpoint, params))
     return(object_ids)
